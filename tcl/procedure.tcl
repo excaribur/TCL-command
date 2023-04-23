@@ -16,4 +16,21 @@ while {$i < [llength $sSplit]} {
 }
 for { set index 0 }  { $index < [array size arr] }  { incr index } {
    puts "arr($index) : $arr($index)"
+   set arrForeach($index) [modifier $data "@esp-group.asia"] 
+}
+
+puts ""
+puts {foreach name $sSplit}
+foreach name $sSplit {
+	puts "$name"
+}
+puts ""
+puts {foreach {newName} [array names arrForeach]}
+foreach {newName} [array names arrForeach] {
+	puts "$newName"
+}
+puts ""
+puts {foreach {key value} [array get arrForeach]}
+foreach {key value} [array get arrForeach] {
+	puts "key:$key and value:$value"
 }

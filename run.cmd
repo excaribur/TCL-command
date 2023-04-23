@@ -1,8 +1,11 @@
-tclsh tcl/procedure.tcl
+tclsh tcl/tempqueryTest.tcl
 pause
 
-tclsh tcl/stdinput.tcl
-pause
+::tclsh tcl/procedure.tcl
+::pause
+::
+::tclsh tcl/stdinput.tcl
+::pause
 
 ::tclsh tcl/split.tcl
 ::pause

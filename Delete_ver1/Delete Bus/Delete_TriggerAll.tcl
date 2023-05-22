@@ -3,24 +3,27 @@ tcl;
 mql set context user creator;
 mql verbose on;
 
-puts "==== DELETE ALL BUSSINESS OBJECT ===="
+puts ""
+puts "================ DELETE ALL BUSSINESS OBJECT ================"
+puts ""
 
 #================MODE 1==============================================================
 # FOR USER INPUT , IF USE UNCOMMENT THIS CODE
 # AND COMMENT MODE 2  
-puts "Enter TYPE to query :"
-gets stdin sType
-puts "Enter NAME to query :"
-gets stdin sName
-puts "Enter REVISON to query :"
-gets stdin sRevion
+#puts "ENTER BUSINESS OBJECT DATA"
+#puts "TYPE:"
+#gets stdin sType
+#puts "NAME:"
+#gets stdin sName
+#puts "REVISON:"
+#gets stdin sRevion
 #====================================================================================
 #================MODE 2==============================================================
 # INPUT TYPE NAME REVISON OF BUSSINESS OBJECT
 # IF USE UNCOMMENT THIS CODE AND COMMENT MODE 1
-#set sType ESP*
-#set sName *pub*1
-#set sRevion *
+set sType *Trigger*
+set sName *ESP*
+set sRevion *
 #====================================================================================
 
 # MQL TO RETRIEVE DATA
@@ -28,7 +31,9 @@ set liBus [split [mql temp query bus $sType $sName $sRevion select id dump |] \n
 
 # PROCEDURE TO PRINT DATA
 proc print {id} {
-	puts "====	Print	===="
+	puts "=============================="
+	puts "= PRINT QUERY BUSINESS OBJECT="
+	puts "=============================="
 	foreach bus $id {
 		puts "$bus"
 	}
@@ -36,7 +41,7 @@ proc print {id} {
 
 # PROCEDURE TO WRITE FILE MQL
 proc putstr {str} {
-	puts "====	Start Write	===="
+	puts "=============================="
 	set fp [open "del.tcl" w+]
 	
 	puts $fp "tcl;"
@@ -49,9 +54,16 @@ proc putstr {str} {
 		puts $fp "mql del bus $id"
 	}
 
-	close $fp
-	
-	return "====	Write file DONE	===="
+	close $fp 
+	return "=============================="
+}
+
+# PROCEDURE TO DELETE FILE DATA
+proc deleteFile {} {
+	set path [pwd]
+	append path "/del.tcl"
+	file delete -force $path
+	#puts "$path"
 }
 
 puts [print $liBus]  
@@ -63,18 +75,21 @@ gets stdin argDelete
 while {$argDelete != "exit"} {
 	if {$argDelete == "yes"} {
 		puts [putstr $liBus]
-		puts "====	Open file to Delete	===="
+		puts "====	IN PROCESS DELETE	===="
+		
 		mql run del.tcl;
-		puts "==== DELETE All DONE	===="
+		puts [deleteFile]
+		puts "====	DELETE All DONE		===="
+
 		set argDelete "exit"
 	} elseif {$argDelete == "no"} {
-		puts "==== OK no delete ===="
+		puts "======== OK NO DELETE ========"
 		puts "Do you want to delete all? (yes or no or exit) :"
 		gets stdin argDelete
 	} else {
-		puts "==== typo, missing command ===="
+		puts "==== TYPO, MISSING COMMAND ==="
 		puts "Do you want to delete all? (yes or no or exit) :"
 		gets stdin argDelete
 	}
 }
-puts "==== Goodbye ===="
+puts "========================== FINISHED ========================="

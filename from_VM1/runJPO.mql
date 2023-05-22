@@ -1,0 +1,21 @@
+# date: 25/04/2023
+# by Jirayut
+
+set context user creator;
+# verbose on;
+
+start transaction;
+
+insert prog D:\DassaultSystemes\R2018x\3DSpace\eclipse\3dspace\3dspace\src\main\java\example\ESP_CommonDocumentService_mxJPO.java;
+compile prog ESP_CommonDocumentService;
+
+insert prog D:\DassaultSystemes\R2018x\3DSpace\eclipse\3dspace\3dspace\src\main\java\example\ESP_Trigger_mxJPO.java;
+compile prog ESP_Trigger;
+
+
+tcl;
+puts "===Done==="
+exit
+
+
+commit transaction;

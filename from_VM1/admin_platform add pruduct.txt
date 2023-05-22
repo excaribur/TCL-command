@@ -1,0 +1,15 @@
+ MQL<4>print person admin_platform select product;
+person   admin_platform
+    product = IFW
+    product = CSV
+    product = PDE
+    product = CNV
+MQL<5>
+
+MQL<6>mod person admin_platform remove product CNV;
+Product 'CNV' successfully removed
+Person 'admin_platform' successfully modified
+MQL<7>mod person admin_platform remove product PDE;
+Product 'PDE' successfully removed
+Person 'admin_platform' successfully modified
+MQL<8>
